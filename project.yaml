@@ -1,0 +1,23 @@
+kind: project
+metadata:
+  name: azureml-demo
+spec:
+  description: test
+  params:
+    label_column: heart_disease.target
+  functions:
+  - url: hub://azureml_utils
+    name: train
+  workflows:
+  - name: main
+    path: ./kflow.py
+    engine: kfp
+  artifacts:
+  - kind: ''
+    target_path: https://s3.wasabisys.com/iguazio/data/iris/iris.data.raw.csv
+    key: data
+  source: ./
+  subpath: ''
+  origin_url: ''
+  load_source_on_run: true
+  desired_state: online
